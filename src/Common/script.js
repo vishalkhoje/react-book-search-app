@@ -20,4 +20,4 @@ export function formateJsonData(arrSearchResults) {
     return arrNewSearchResult;
 }
 
-export const truncate = (input, charactersCnt) => input.length > 255 ? `${input.substring(0, charactersCnt)}` : input;
+export const truncate = (input, charactersCnt) => input.length > charactersCnt ? `${input.substring(0, charactersCnt)}...` : input;

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { truncate } from "./../Common/script";
 
 const SearchResult = ({ bookData, handleBtnDetailBook }) => {
     /**
@@ -14,7 +15,9 @@ const SearchResult = ({ bookData, handleBtnDetailBook }) => {
     if (bookTitle.length > displayTitle.length) {
         displayTitle += "...";
     }
-
+    let autherName = bookData.best_book.author.name;
+    let displayAutherName = truncate(autherName, 10);
+    console.log(truncate(autherName, 10))
     return (
         <div className="col-xs-3 col-sm-6 col-md-3 col-lg-2">
             <div className="card card-height">
@@ -33,8 +36,11 @@ const SearchResult = ({ bookData, handleBtnDetailBook }) => {
                     >
                         {displayTitle}
                     </h4>
-                    <p className="text-sm-left card-text">
-                        {bookData.best_book.author.name}
+                    <p className="text-sm-left card-text" 
+                        data-toggle="tooltip"
+                        data-placement="bottom" 
+                        title={displayAutherName.includes("...") ? autherName : ""}>
+                        { displayAutherName }
                     </p>
 
                     <button
