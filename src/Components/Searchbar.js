@@ -3,6 +3,7 @@ import axios from "axios";
 import AllBooksSearchResult from "./AllBooksSearchResult";
 import BookInfo from "./BookInfo";
 import { formateJsonData } from "./../Common/script";
+import { configObj } from "./../config";
 const  convert = require('xml-js');
 const apiKey = process.env.REACT_APP_GOODREAD_API_KEY;
 
@@ -42,8 +43,8 @@ export default class Searchbar extends Component {
 		});
 		const { searchText } = this.state;
 		const requestBookSearchUrl =
-			`https://cors-anywhere.herokuapp.com/` +
-			`https://www.goodreads.com/search/index.xml?key=${apiKey}&q=${searchText}`;
+			`${configObj.corsUrl}` +
+			`${configObj.searchAllBooksUrl}?key=${apiKey}&q=${searchText}`;
 
 		axios.get(requestBookSearchUrl)
 			.then(res => {

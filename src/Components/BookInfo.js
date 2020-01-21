@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import PropTypes from "prop-types";
 import { formateJsonData, truncate } from "./../Common/script";
+import { configObj } from "./../config";
 const convert = require('xml-js');
 const apiKey = process.env.REACT_APP_GOODREAD_API_KEY;
 
@@ -30,8 +31,8 @@ class BookInfo extends Component {
     getDescription = () => {
         const bookId = this.props.detailBookInfoData.best_book.id;
         const requestUri =
-            `https://cors-anywhere.herokuapp.com/` +
-            `https://www.goodreads.com/book/show/${bookId}?key=${apiKey}`;
+            `${configObj.corsUrl}` +
+            `${configObj.searchBookUrl}/${bookId}?key=${apiKey}`;
 
         Axios.get(requestUri)
             .then(res => {
