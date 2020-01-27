@@ -15,9 +15,8 @@ const SearchResult = ({ bookData, handleBtnDetailBook }) => {
     if (bookTitle.length > displayTitle.length) {
         displayTitle += "...";
     }
-    let autherName = bookData.best_book.author.name;
-    let displayAutherName = truncate(autherName, 10);
-    console.log(truncate(autherName, 10))
+    const autherName = bookData.best_book.author.name;
+    const displayAutherName = truncate(autherName, 10);
     return (
         <div className="col-xs-3 col-sm-6 col-md-3 col-lg-2">
             <div className="card card-height">
@@ -36,11 +35,11 @@ const SearchResult = ({ bookData, handleBtnDetailBook }) => {
                     >
                         {displayTitle}
                     </h4>
-                    <p className="text-sm-left card-text" 
+                    <p className="text-sm-left card-text"
                         data-toggle="tooltip"
-                        data-placement="bottom" 
+                        data-placement="bottom"
                         title={displayAutherName.includes("...") ? autherName : ""}>
-                        { displayAutherName }
+                        {displayAutherName}
                     </p>
 
                     <button
@@ -48,7 +47,7 @@ const SearchResult = ({ bookData, handleBtnDetailBook }) => {
                         onClick={() => handleBtnDetailBook(bookData)}
                     >
                         More Info
-          </button>
+                    </button>
                 </div>
             </div>
         </div>

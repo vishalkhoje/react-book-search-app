@@ -48,9 +48,9 @@ export default class Searchbar extends Component {
 
 		axios.get(requestBookSearchUrl)
 			.then(res => {
-				let options = { compact: true, spaces: 0};
-				let jsonObj = convert.xml2js(res.data, options);
-				let arrSearchResults = jsonObj.GoodreadsResponse.search.results.work;
+				const options = { compact: true, spaces: 0};
+				const jsonObj = convert.xml2js(res.data, options);
+				const arrSearchResults = jsonObj.GoodreadsResponse.search.results.work;
 				const arrNewSearchResult = formateJsonData(arrSearchResults);
 				this.setSearcResults(arrNewSearchResult);
 			})

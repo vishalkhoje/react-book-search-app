@@ -37,12 +37,13 @@ class BookInfo extends Component {
         Axios.get(requestUri)
             .then(res => {
                 const jsonObj = convert.xml2js(res.data, { compact: true, spaces: 0 });
-                let arrBookInfoResults = formateJsonData(jsonObj.GoodreadsResponse.book);
-                if (arrBookInfoResults[0] && arrBookInfoResults[0].description) {
-                    let desc = arrBookInfoResults[0].description;
+                // let arrBookInfoResults = formateJsonData(jsonObj.GoodreadsResponse.book);
+                const [arrBookInfoResults] = formateJsonData(jsonObj.GoodreadsResponse.book); //use destructuring
+                if (arrBookInfoResults && arrBookInfoResults.description) {
+                    const desc = arrBookInfoResults.description;
                     if (desc && desc !== "") {
                         //truncate use for show desc upto 250 charaters remaning will display after cliking on read more btn
-                        let shortDesc = truncate(desc, 250);
+                        const shortDesc = truncate(desc, 250);
                         this.setState({
                             description: desc,
                             shortDesc: shortDesc
